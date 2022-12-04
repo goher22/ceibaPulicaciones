@@ -10,6 +10,13 @@ class UserModel {
   String phone;
   String email;
 
+  Map<String, dynamic> toMap() => {
+        "id": id,
+        "name": name,
+        "phone": phone,
+        "email": email,
+      };
+
   factory UserModel.clone(UserModel user) => UserModel(
         id: user.id,
         name: user.name,
@@ -19,8 +26,8 @@ class UserModel {
 
   factory UserModel.fromMap(Map<String, dynamic> json) => UserModel(
         id: json["id"],
-        name: json["name"],
-        phone: json["phone"],
-        email: json["email"],
+        name: json["name"] ?? "",
+        phone: json["phone"] ?? "",
+        email: json["email"] ?? "",
       );
 }
