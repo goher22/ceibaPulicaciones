@@ -1,8 +1,9 @@
-import 'package:ceiba_publicaciones/services/responser_services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
-abstract class ServerServices {
+import 'responser_services.dart';
+
+abstract class ServerAPIServices {
   static final String _UrlBase = dotenv.env["URL_BASE"] ?? "";
 
   static final headers = {
