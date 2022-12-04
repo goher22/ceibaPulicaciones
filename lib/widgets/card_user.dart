@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../helpers/app_router.dart';
+
 class CardUser extends StatelessWidget {
-  const CardUser({super.key});
+  final bool btnPublicacion;
+  const CardUser({super.key, this.btnPublicacion = false});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +19,14 @@ class CardUser extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text("Nombre"),
+            Text(
+              "Nombre",
+              style: TextStyle(
+                color: Theme.of(context).primaryColor,
+                fontWeight: FontWeight.bold,
+                fontSize: 17,
+              ),
+            ),
             Row(
               children: [
                 Icon(
@@ -41,20 +51,23 @@ class CardUser extends StatelessWidget {
                 Text("Correo"),
               ],
             ),
-            Align(
-              alignment: Alignment.bottomRight,
-              child: MaterialButton(
-                padding: EdgeInsets.zero,
-                child: Text(
-                  "VER PUBLICACIONES",
-                  style: TextStyle(
-                    color: Theme.of(context).primaryColor,
-                    fontWeight: FontWeight.bold,
+            if (btnPublicacion)
+              Align(
+                alignment: Alignment.bottomRight,
+                child: MaterialButton(
+                  padding: EdgeInsets.zero,
+                  child: Text(
+                    "VER PUBLICACIONES",
+                    style: TextStyle(
+                      color: Theme.of(context).primaryColor,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
+                  onPressed: () {
+                    Navigator.pushNamed(context, AppRouter.routerDetailUser);
+                  },
                 ),
-                onPressed: () {},
               ),
-            ),
           ],
         ),
       ),

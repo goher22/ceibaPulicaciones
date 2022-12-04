@@ -34,7 +34,7 @@ class ListUserScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: EdgeInsets.only(top: size.height * 0.03),
-                      child: const CardUser(),
+                      child: const CardUser(btnPublicacion: true),
                     );
                   },
                 ),
