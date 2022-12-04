@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../helpers/app_router.dart';
+import '../models/user_model.dart';
+import '../providers/provider.dart';
 
 class CardUser extends StatelessWidget {
+  final UserModel user;
   final bool btnPublicacion;
-  const CardUser({super.key, this.btnPublicacion = false});
+  const CardUser({super.key, this.btnPublicacion = false, required this.user});
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final providerUser = Provider.of<UserProvider>(context);
     return Card(
       child: Padding(
         padding: EdgeInsets.symmetric(
@@ -20,7 +25,7 @@ class CardUser extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              "Nombre",
+              user.name,
               style: TextStyle(
                 color: Theme.of(context).primaryColor,
                 fontWeight: FontWeight.bold,
@@ -36,7 +41,7 @@ class CardUser extends StatelessWidget {
                 SizedBox(
                   width: size.width * 0.01,
                 ),
-                Text("Telefono"),
+                Text(user.name),
               ],
             ),
             Row(
@@ -48,7 +53,7 @@ class CardUser extends StatelessWidget {
                 SizedBox(
                   width: size.width * 0.01,
                 ),
-                Text("Correo"),
+                Text(user.email),
               ],
             ),
             if (btnPublicacion)
@@ -64,6 +69,7 @@ class CardUser extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
+                    providerUser.user = UserModel.clone(user);
                     Navigator.pushNamed(context, AppRouter.routerDetailUser);
                   },
                 ),

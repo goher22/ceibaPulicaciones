@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 abstract class AppColor {
+  static Color blackOpacity = const Color.fromARGB(117, 0, 0, 0);
+
   static MaterialColor materialColor = const MaterialColor(
     0xff416039,
     <int, Color>{

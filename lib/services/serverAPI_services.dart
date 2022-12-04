@@ -12,9 +12,9 @@ abstract class ServerAPIServices {
   };
 
   static Future<dynamic> serviceGet(
-    String path,
+    String path, {
     Map<String, dynamic>? parament,
-  ) async {
+  }) async {
     try {
       final url = Uri.https(_UrlBase, path, parament);
       final resp = await http.get(url, headers: headers);

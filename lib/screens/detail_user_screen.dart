@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../providers/users_provider.dart';
 import '../widgets/card_publication.dart';
 import '../widgets/card_user.dart';
 
@@ -8,6 +10,7 @@ class DetailUserScreens extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final providerUser = Provider.of<UserProvider>(context);
     final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
@@ -25,7 +28,9 @@ class DetailUserScreens extends StatelessWidget {
                 padding: EdgeInsets.symmetric(
                   vertical: size.height * 0.02,
                 ),
-                child: CardUser(),
+                child: CardUser(
+                  user: providerUser.user,
+                ),
               ),
               Expanded(
                 child: ListView.builder(
