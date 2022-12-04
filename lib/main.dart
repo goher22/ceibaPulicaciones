@@ -1,6 +1,11 @@
+import 'package:ceiba_publicaciones/helpers/app_colors.dart';
+import 'package:ceiba_publicaciones/helpers/app_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:provider/provider.dart';
+
+import 'helpers/app_helpers.dart';
 
 void main() async {
   await dotenv.load(fileName: ".env");
@@ -8,7 +13,19 @@ void main() async {
     DeviceOrientation.portraitDown,
     DeviceOrientation.portraitUp,
   ]);
-  return runApp(const MyApp());
+  return runApp(const AppState());
+}
+
+class AppState extends StatelessWidget {
+  const AppState({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: AppProvider.providers,
+      child: const MyApp(),
+    );
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -18,14 +35,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Material App',
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Material App Bar'),
-        ),
-        body: const Center(
-          child: Text('Hello World'),
-        ),
+      title: 'Prueba de Ingreso',
+      initialRoute: AppRouter.routerListUser,
+      routes: AppRouter.routes,
+      theme: ThemeData(
+        primarySwatch: AppColor.materialColor,
       ),
     );
   }
