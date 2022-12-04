@@ -53,6 +53,8 @@ class _BodyUsersState extends State<_BodyUsers> {
     ListUserServices.getListUser().then((users) {
       widget.userProvider.users = users;
       widget.userProvider.loading = false;
+    }).onError((error, stackTrace) {
+      widget.userProvider.loading = false;
     });
   }
 

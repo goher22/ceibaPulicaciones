@@ -20,7 +20,7 @@ abstract class ServerAPIServices {
       final resp = await http.get(url, headers: headers);
       final data = ResponserServices.responserHttp(resp);
       return data;
-    } catch (_) {
+    } catch (e) {
       rethrow;
     }
   }

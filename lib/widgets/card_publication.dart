@@ -1,9 +1,10 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
+import '../models/post_model.dart';
+
 class CardPublication extends StatelessWidget {
-  const CardPublication({super.key});
+  final PostModel post;
+  const CardPublication({super.key, required this.post});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,8 @@ class CardPublication extends StatelessWidget {
         child: Column(
           children: [
             Text(
-              "Titulo",
+              post.title,
+              textAlign: TextAlign.center,
               style: TextStyle(
                 color: Theme.of(context).primaryColor,
                 fontWeight: FontWeight.bold,
@@ -28,7 +30,7 @@ class CardPublication extends StatelessWidget {
             ),
             Align(
               alignment: Alignment.topLeft,
-              child: Text("Publicacion"),
+              child: Text(post.description),
             ),
           ],
         ),

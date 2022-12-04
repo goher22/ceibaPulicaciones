@@ -6,5 +6,6 @@ import '../providers/provider.dart';
 abstract class AppProvider {
   static List<SingleChildWidget> providers = [
     ChangeNotifierProvider(create: (_) => UserProvider()),
+    ChangeNotifierProvider(create: (_) => PostProviver()),
   ];
 }
