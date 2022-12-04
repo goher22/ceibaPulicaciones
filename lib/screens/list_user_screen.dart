@@ -73,21 +73,34 @@ class _BodyUsersState extends State<_BodyUsers> {
               labelStyle: TextStyle(color: Theme.of(context).primaryColor),
               labelText: "Buscar usuario",
             ),
-            onChanged: (value) {},
+            onChanged: (value) {
+              providerUser.shearchUser = value;
+            },
           ),
           Expanded(
-            child: ListView.builder(
-              itemCount: providerUser.users.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: EdgeInsets.only(top: size.height * 0.03),
-                  child: CardUser(
-                    btnPublicacion: true,
-                    user: providerUser.users[index],
+            child: providerUser.users.isEmpty && !providerUser.loading
+                ? Center(
+                    child: Text(
+                      "List is empty",
+                      style: TextStyle(
+                        color: Theme.of(context).primaryColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    ),
+                  )
+                : ListView.builder(
+                    itemCount: providerUser.users.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: EdgeInsets.only(top: size.height * 0.03),
+                        child: CardUser(
+                          btnPublicacion: true,
+                          user: providerUser.users[index],
+                        ),
+                      );
+                    },
                   ),
-                );
-              },
-            ),
           )
         ],
       ),

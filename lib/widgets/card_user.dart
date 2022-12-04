@@ -41,7 +41,7 @@ class CardUser extends StatelessWidget {
                 SizedBox(
                   width: size.width * 0.01,
                 ),
-                Text(user.name),
+                Text(user.phone),
               ],
             ),
             Row(

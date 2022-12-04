@@ -13,7 +13,10 @@ class UserProvider extends ChangeNotifier {
   List<UserModel> _users = [];
   List<UserModel> get users => _shearchUser.trim() == ""
       ? _users
-      : _users.where((us) => us.name.contains(_shearchUser)).toList();
+      : _users
+          .where((us) =>
+              us.name.toUpperCase().contains(_shearchUser.toUpperCase()))
+          .toList();
   set users(List<UserModel> list) {
     _users = list;
     notifyListeners();
@@ -26,7 +29,7 @@ class UserProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  late bool _loading = false;
+  late bool _loading = true;
   bool get loading => _loading;
   set loading(bool value) {
     _loading = value;
